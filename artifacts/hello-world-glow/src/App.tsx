@@ -85,17 +85,11 @@ export default function App() {
       }
 
       if (e.key === "Backspace") {
-        e.preventDefault();
-        if (current.length > 0) {
-          setCurrent((prev) => prev.slice(0, -1));
-        } else if (segments.length > 0) {
+        if (current.length === 0 && segments.length > 0) {
+          e.preventDefault();
           setSegments((prev) => prev.slice(0, -1));
         }
         return;
-      }
-
-      if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
-        setCurrent((prev) => prev + e.key);
       }
     },
     [phase, segments, current],
@@ -214,7 +208,7 @@ export default function App() {
                 <span className="typed-chars">{current}</span>
               </>
             )}
-            <span className="typed-cursor">▍</span>
+            <span className="typed-cursor">|</span>
             <span className="typed-quote">"</span>
             <span className="typed-prefix">)</span>
           </div>
